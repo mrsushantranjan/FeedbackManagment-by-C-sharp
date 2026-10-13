@@ -1,0 +1,61 @@
+@model IEnumerable<FeedbackManagement.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Feedback List";
+}
+
+<div class="main-card">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Feedback Records</h2>
+            <p class="text-muted mb-0">
+                View all submitted feedback.
+            </p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary">
+            + Add Feedback
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No feedback has been submitted yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Rating</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.Rating / 5</td>
+                            <td>@item.Comments</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

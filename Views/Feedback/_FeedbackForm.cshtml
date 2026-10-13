@@ -1,0 +1,40 @@
+@model FeedbackManagement.Models.Feedback
+<div class="mb-3">
+    @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+    @Html.TextBoxFor(m => m.Name,
+        new { @class = "form-control", placeholder = "Enter your name" })
+    @Html.ValidationMessageFor(m => m.Name, "",
+        new { @class = "text-danger" })
+</div>
+
+<div class="mb-3">
+    @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+    @Html.TextBoxFor(m => m.Email,
+        new { @class = "form-control", placeholder = "you@example.com" })
+    @Html.ValidationMessageFor(m => m.Email, "",
+        new { @class = "text-danger" })
+</div>
+
+<div class="mb-3">
+    @Html.LabelFor(m => m.Rating, new { @class = "form-label" })
+    @Html.DropDownListFor(m => m.Rating,
+        new SelectList(new[] {
+            new { Value = 1, Text = "1 - Poor" },
+            new { Value = 2, Text = "2 - Fair" },
+            new { Value = 3, Text = "3 - Good" },
+            new { Value = 4, Text = "4 - Very Good" },
+            new { Value = 5, Text = "5 - Excellent" }
+        }, "Value", "Text"),
+        "-- Select Rating --",
+        new { @class = "form-select" })
+    @Html.ValidationMessageFor(m => m.Rating, "",
+        new { @class = "text-danger" })
+</div>
+
+<div class="mb-3">
+    @Html.LabelFor(m => m.Comments, new { @class = "form-label" })
+    @Html.TextAreaFor(m => m.Comments, 4, 50,
+        new { @class = "form-control", placeholder = "Write your feedback..." })
+    @Html.ValidationMessageFor(m => m.Comments, "",
+        new { @class = "text-danger" })
+</div>
